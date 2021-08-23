@@ -81,6 +81,25 @@ public class TicTacToeGame {
 		
 	}
 	
+	/*@method moves to desired location
+	 * checks if the space is free
+	 * ability to make a move for desired location
+	 */
+	public static void desiredMove()
+	{
+		if(board[index]==' ')					//check if the index is free
+		{
+			board[index]=choice;
+		}
+		else
+		{
+			System.out.println("Current cell is already Filled. Please enter different index No.");
+			desiredLocation();					//@call desired location method
+			desiredMove();
+		}
+		showBoard();
+	}
+
 	//Main Function
 	public static void main(String[] args) {
 		System.out.println("Welcome"); //Welcome Message
@@ -92,7 +111,7 @@ public class TicTacToeGame {
 		System.out.println("Enter the index to move to desired cell");
 		
 		desiredLocation();          			//@method to get desired index from the player
-		
+		desiredMove();     						//@method to move to the desired cell
 	}
 
 }
