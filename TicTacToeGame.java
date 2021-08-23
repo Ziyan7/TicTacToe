@@ -83,7 +83,7 @@ public class TicTacToeGame {
 	
 	/*@method moves to desired location
 	 * checks if the space is free
-	 * ability to make a move for desired location
+	 * ability to make a move to desired location
 	 */
 	public static void desiredMove()
 	{
@@ -99,19 +99,40 @@ public class TicTacToeGame {
 		}
 		showBoard();
 	}
-
+	public static void toss()
+	{
+		System.out.println("Player select head(0) or tail(1)");
+		int selected=sc.nextInt();							//class member for storing choice of the player
+		/* a random number is chosen between 1 or 0
+		 * if its 0 then head or if it is 1 its tail
+		 */
+		int randnum=rand.nextInt(2);						
+		if(selected==randnum)
+		{
+			System.out.println("Its player's turn");
+			turn='p';
+			
+		}
+		else
+		{
+			System.out.println("Its computer's turn");
+			turn='c';
+		}
+	}
+	
 	//Main Function
 	public static void main(String[] args) {
 		System.out.println("Welcome"); //Welcome Message
 		TicTacToeGame obj = new TicTacToeGame();
 		obj.TicTacToeBoard(); //initializing the Board
-		turn='p';	//assuming that its players turn to play
+		toss();									 //@method to perform toss
 		inputChar();   //@method to enter input X or O
 		showBoard(); // @method to display entire board
 		System.out.println("Enter the index to move to desired cell");
 		
 		desiredLocation();          			//@method to get desired index from the player
 		desiredMove();     						//@method to move to the desired cell
+		
 	}
 
 }
