@@ -33,6 +33,18 @@ public class TicTacToeGame {
 		}
 	}
 	
+	//@method to display the contents of board in table format
+	public static void showBoard()
+	{
+		System.out.println("|---|---|---|");
+		System.out.println("| " + board[1] + " | " + board[2] + " | " + board[3] + " |"); //display first row
+		System.out.println("|-----------|");
+		System.out.println("| " + board[4] + " | " + board[5] + " | " + board[6] + " |"); //display second row
+		System.out.println("|-----------|");
+		System.out.println("| " + board[7] + " | " + board[8] + " | " + board[9] + " |"); //display third row
+		System.out.println("|---|---|---|");
+	}
+	
 	/*@method to get input value X or O from the player
 	 * if its computers turn to play select a random number 0 or 1 
 	 * 0 means input is X or else O
@@ -65,6 +77,7 @@ public class TicTacToeGame {
 		obj.TicTacToeBoard(); //initializing the Board
 		turn='0';	//assuming that its players turn to play
 		inputChar();   //@method to enter input X or O
+		showBoard(); // @method to display entire board
 	}
 
 }
