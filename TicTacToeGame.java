@@ -304,8 +304,22 @@ public class TicTacToeGame {
 		{	
 			board[9]=choiceC;
 		}
-	   	else {
-	   		desiredLocation();			
+		//checking for the corners
+		else if(board[1]==' ') {
+			board[1]=choiceC;
+		}
+		else if(board[3]==' ') {
+			board[3]=choiceC;
+		}
+		else if(board[7]==' ') {
+			board[7]=choiceC;
+		}
+		else if(board[9]==' ') {
+			board[9]=choiceC;
+		}
+		else {
+	   		desiredLocation();		
+	   		desiredMove();
 		}
 		showBoard();
 		;
@@ -317,7 +331,7 @@ public class TicTacToeGame {
 		TicTacToeBoard(); //initializing the Board
 		toss();
 		inputChar();
-		while(winner=="no" || winner=="draw")
+		while(winner=="no" || winner!="draw")
 		 {
 			if(turn=='p') {
 				  
@@ -330,7 +344,7 @@ public class TicTacToeGame {
 			else {
 				
 				computerTry(); 
-				desiredMove();
+				
 				checkWinner();
 				turn='p';
 			}
