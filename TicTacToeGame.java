@@ -267,6 +267,43 @@ public class TicTacToeGame {
 		{
 			board[9]=choiceC;
 		}
+		//blocking players victory condition
+		else if((board[1]==' ')&&(board[2]==board[3]&&board[2]==choiceP)||(board[4]==board[7]&&board[4]==choiceP)||(board[5]==board[9]&&board[5]==choiceP))
+		{
+			board[1]=choiceC;	
+		}
+		else if((board[2]==' ')&&(board[1]==board[3]&&board[3]==choiceP)||(board[5]==board[8]&&board[8]==choiceP))
+		{
+			board[2]=choiceC;
+		}
+		else if((board[3]==' ')&&(board[1]==board[2]&&board[2]==choiceP)||(board[6]==board[9]&&board[9]==choiceP)||(board[5]==board[7]&&board[7]==choiceP))
+		{
+			board[3]=choiceC;
+		}
+		else  if((board[4]==' ')&&(board[1]==board[7]&&board[1]==choiceP)||(board[5]==board[6]&&board[6]==choiceP))
+		{
+			board[4]=choiceC;
+		}	
+		else if((board[5]==' ')&&(board[1]==board[9]&&board[2]==choiceP)||(board[7]==board[3]&&board[7]==choiceP)||(board[2]==board[8]&&board[8]==choiceP)||(board[4]==board[6]&&board[6]==choiceP))
+		{
+			board[5]=choiceC;
+		}
+		else if((board[6]==' ')&&(board[9]==board[3]&&board[3]==choiceP)||(board[5]==board[4]&&board[4]==choiceP))
+		{
+			board[6]=choiceC;
+		}
+		else 	if((board[7]==' ')&&(board[1]==board[4]&&board[4]==choiceP)||(board[6]==board[9]&&board[9]==choiceP)||(board[5]==board[7]&&board[7]==choiceP))
+		{
+			board[7]=choiceC;
+		}
+		else if((board[8]==' ')&&(board[9]==board[7]&&board[7]==choiceP)||(board[2]==board[5]&&board[2]==choiceP))
+		{
+			board[8]=choiceC;
+		}
+		else if((board[9]==' ')&&(board[1]==board[5]&&board[5]==choiceP)||(board[6]==board[3]&&board[3]==choiceP)||(board[8]==board[7]&&board[7]==choiceP))
+		{	
+			board[9]=choiceC;
+		}
 	   	else {
 	   		desiredLocation();			
 		}
@@ -292,9 +329,8 @@ public class TicTacToeGame {
 			}
 			else {
 				
-				desiredLocation(); 
+				computerTry(); 
 				desiredMove();
-				computerTry();
 				checkWinner();
 				turn='p';
 			}
