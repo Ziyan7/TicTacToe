@@ -195,9 +195,10 @@ public class TicTacToeGame {
         for(i=1;i<board.length;i++)
         {
         	if(board[i]==' ')
+        		
         		break;
         }
-        if(i==10)
+        if(i==board.length)
         	winner="draw";
         if(winner=="yes")						//check for winner
 		{
@@ -338,6 +339,23 @@ public class TicTacToeGame {
 		showBoard();
 		;
 	}
+	//repeat the game
+	public static void playAgain()
+    {
+    	System.out.println("Do you want to play again??\npress 0 to play again\npress 1 to exit");
+    	int choice = sc.nextInt();
+    	if(choice == 0)
+    	{
+    		TicTacToeBoard();	//initializing the board
+    		inputChar(); //@method to enter input X or O			
+		toss();
+    	}
+    	else {
+    		System.exit(0);
+    	}
+    	
+    }
+	
 	
 	//Main Function
 	public static void main(String[] args) {
@@ -345,7 +363,8 @@ public class TicTacToeGame {
 		TicTacToeBoard(); //initializing the Board
 		toss();
 		inputChar();
-		while(winner=="no" || winner!="draw")
+
+		while(winner!="yes" || winner!="draw")
 		 {
 			if(turn=='p') {
 				  
@@ -362,6 +381,7 @@ public class TicTacToeGame {
 				turn='p';
 			}
 		}
+		playAgain();
 		
 	}
 
