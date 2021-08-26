@@ -12,7 +12,8 @@ public class TicTacToeGame {
 	public static char[] board= new char[10];  
 	
 	 //@parameter choice store whether the value is X or O
-	public static char choice;     			  
+	public static char choiceP;     	
+	public static char choiceC;  
 	
 	 /*@parameter turn to check whose turn to play
 	  * turn can be player and computer
@@ -22,10 +23,14 @@ public class TicTacToeGame {
 	
 	//@parameter index to ask user where to mark X or O
 	public static int index;
+	
+	//@parameter winner to check the winner
+	public static String winner="no"; 
 				
 	/*method for initializing the board
 	 * It will initialize the board values with space
 	 */
+	
 	public static void TicTacToeBoard() { 
 		for (int i=1; i<board.length ; i++) {
 			board[i]= ' ';                      //Adding Space
@@ -35,13 +40,11 @@ public class TicTacToeGame {
 	//@method to display the contents of board in table format
 	public static void showBoard()
 	{
-		System.out.println("|---|---|---|");
 		System.out.println("| " + board[1] + " | " + board[2] + " | " + board[3] + " |"); //display first row
 		System.out.println("|-----------|");
 		System.out.println("| " + board[4] + " | " + board[5] + " | " + board[6] + " |"); //display second row
 		System.out.println("|-----------|");
 		System.out.println("| " + board[7] + " | " + board[8] + " | " + board[9] + " |"); //display third row
-		System.out.println("|---|---|---|");
 	}
 	
 	/*@method to get input value X or O from the player
@@ -54,16 +57,22 @@ public class TicTacToeGame {
 		if(turn=='p')
 		{
 			System.out.println("Enter the input(X or O) ");
-			choice=sc.next().charAt(0);
+			choiceP=sc.next().charAt(0);
+			if (choiceP=='X') {
+				choiceC='O';
+			}
 		}
 		else
 		{
+			
 			if (rand.nextInt(2)==0) {
-				choice='X';
+				choiceC='X';
+				choiceP='0';
 				System.out.println("X"); 
 			}
 			else {
-				choice='O';
+				choiceC='O';
+				choiceP='X';
 				System.out.println("O");
 			}
 		}
@@ -72,12 +81,21 @@ public class TicTacToeGame {
 	public static void desiredLocation()
 	{
 		
-		index=sc.nextInt();
-		if(index<1 || index>9)					//To check if the index is between 1 and 9
-		{
-			System.out.println("Please enter the index value between 1 and 9");
-			desiredLocation();
+		if(turn=='c') {
+			index =rand.nextInt(9)+1;
+			
 		}
+		else
+		{	
+			System.out.println("Enter the Cell location");
+			index=sc.nextInt();
+			if(index<1 || index>9)					//To check if the index is between 1 and 9
+			{
+				System.out.println("Please enter the index value between 1 and 9");
+				desiredLocation();
+			}
+		}
+		
 		
 	}
 	
@@ -89,7 +107,12 @@ public class TicTacToeGame {
 	{
 		if(board[index]==' ')					//check if the index is free
 		{
-			board[index]=choice;
+			if (turn=='p') {
+				board[index]=choiceP;
+			}
+			else {
+				board[index]=choiceC;
+			}
 		}
 		else
 		{
@@ -112,6 +135,7 @@ public class TicTacToeGame {
 			System.out.println("Its player's turn");
 			turn='p';
 			
+			
 		}
 		else
 		{
@@ -120,18 +144,111 @@ public class TicTacToeGame {
 		}
 	}
 	
+	/*@method to check for winner
+	 * Checks if there is XXX or OOO pattern in horizontal or vertical or diagonal direction
+	 * if the pattern exists then there is a winner
+	 * Then checks if all the values are filled and if yes, its a draw or else next person plays
+	 */
+	
+	public	static void checkWinner()
+    {
+		
+		//to check if there is a winning pattern
+        for (int check = 1; check < 9; check++) 
+        {
+            String line = null;
+  
+            switch (check) {
+            case 1:
+                line = ""+board[1] + board[2] + board[3]; //Horizontal check for the pattern
+                break;
+            case 2:
+                line = ""+board[4] + board[5] + board[6];
+                break;
+            case 3:
+                line = ""+board[7] + board[8] + board[9];
+                break;
+            case 4:
+                line = ""+board[1] + board[4] + board[7]; //Vertical check for the pattern
+                break;
+            case 5:
+                line = ""+board[2] + board[5] + board[8];
+                break;
+            case 6:
+                line = ""+board[3] + board[5] + board[9];
+                break;
+            case 7:
+                line = ""+board[1] + board[5] + board[9]; //Diagonal check for the pattern
+                break;
+            case 8:
+                line = ""+board[3] + board[5] + board[7];
+                break;
+            }
+            //to check the winner winner
+            if (line.equals("XXX")||line.equals("OOO")) {
+                winner="yes";
+            }
+              
+         }
+        int i=1;
+        for(i=1;i<board.length;i++)
+        {
+        	if(board[i]==' ')
+        		break;
+        }
+        if(i==10)
+        	winner="draw";
+        if(winner=="yes")						//check for winner
+		{
+			if(turn=='p')
+				System.out.println("Player has won the game");
+			else
+				System.out.println("Computer has won the game");
+		}
+		else if(winner=="draw")								//check for tie
+		{
+			System.out.println( "It's a draw! Thanks for playing.");
+		}
+		else													//change the turn
+		{
+			if(turn=='c')
+			{
+				turn='p';
+				System.out.println("Players turn to play");
+			}
+			else
+			{
+				turn='c';
+				System.out.println("Computers turn to play");
+			}
+				
+		}
+  
+    }    
 	//Main Function
 	public static void main(String[] args) {
 		System.out.println("Welcome"); //Welcome Message
-		TicTacToeGame obj = new TicTacToeGame();
-		obj.TicTacToeBoard(); //initializing the Board
-		toss();									 //@method to perform toss
-		inputChar();   //@method to enter input X or O
-		showBoard(); // @method to display entire board
-		System.out.println("Enter the index to move to desired cell");
-		
-		desiredLocation();          			//@method to get desired index from the player
-		desiredMove();     						//@method to move to the desired cell
+		TicTacToeBoard(); //initializing the Board
+		toss();
+		inputChar();
+		while(winner=="no" || winner=="draw")
+		 {
+			if(turn=='p') {
+				  
+				 
+				desiredLocation(); 
+				desiredMove(); 
+				checkWinner();
+				turn='c';
+			}
+			else {
+				
+				desiredLocation(); 
+				desiredMove();
+				checkWinner();
+				turn='p';
+			}
+		}
 		
 	}
 
