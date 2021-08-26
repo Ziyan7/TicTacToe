@@ -111,6 +111,7 @@ public class TicTacToeGame {
 				board[index]=choiceP;
 			}
 			else {
+				
 				board[index]=choiceC;
 			}
 		}
@@ -225,6 +226,54 @@ public class TicTacToeGame {
 		}
   
     }    
+	
+	public static void computerTry()
+	{
+   
+		System.out.println("Computer is playing");	
+		if((board[1]==' ')&&(board[2]==board[3]&&board[2]==choiceC)||(board[4]==board[7]&&board[4]==choiceC)||(board[5]==board[9]&&board[5]==choiceC))
+		{
+			board[1]=choiceC;			
+		}
+		else if((board[2]==' ')&&(board[1]==board[3]&&board[3]==choiceC)||(board[5]==board[8]&&board[8]==choiceC))
+		{
+			board[2]=choiceC;
+		}
+		else if((board[3]==' ')&&(board[1]==board[2]&&board[2]==choiceC)||(board[6]==board[9]&&board[9]==choiceC)||(board[5]==board[7]&&board[7]==choiceC))
+		{
+			board[3]=choiceC;
+		}
+		else if((board[4]==' ')&&(board[1]==board[7]&&board[1]==choiceC)||(board[5]==board[6]&&board[6]==choiceC))
+		{
+			board[4]=choiceC;
+		}
+		else if((board[5]==' ')&&(board[1]==board[9]&&board[2]==choiceC)||(board[7]==board[3]&&board[7]==choiceC)||(board[2]==board[8]&&board[8]==choiceC)||(board[4]==board[6]&&board[6]==choiceC))
+		{
+			board[5]=choiceC;
+		}
+		else if((board[6]==' ')&&(board[9]==board[3]&&board[3]==choiceC)||(board[5]==board[4]&&board[4]==choiceC))
+		{
+			board[6]=choiceC;
+		}
+		else if((board[7]==' ')&&(board[1]==board[4]&&board[4]==choiceC)||(board[3]==board[5]&&board[3]==choiceC)||(board[8]==board[9]&&board[8]==choiceC))
+		{
+			board[3]=choiceC;
+		}
+		else if((board[8]==' ')&&(board[9]==board[7]&&board[7]==choiceC)||(board[2]==board[5]&&board[2]==choiceC))
+		{
+			board[8]=choiceC;
+		}
+		else if((board[9]==' ')&&(board[1]==board[5]&&board[5]==choiceC)||(board[6]==board[3]&&board[3]==choiceC)||(board[8]==board[7]&&board[7]==choiceC))
+		{
+			board[9]=choiceC;
+		}
+	   	else {
+	   		desiredLocation();			
+		}
+		showBoard();
+		;
+	}
+	
 	//Main Function
 	public static void main(String[] args) {
 		System.out.println("Welcome"); //Welcome Message
@@ -245,6 +294,7 @@ public class TicTacToeGame {
 				
 				desiredLocation(); 
 				desiredMove();
+				computerTry();
 				checkWinner();
 				turn='p';
 			}
