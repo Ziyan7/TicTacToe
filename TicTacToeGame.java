@@ -317,10 +317,24 @@ public class TicTacToeGame {
 		else if(board[9]==' ') {
 			board[9]=choiceC;
 		}
-		else {
-	   		desiredLocation();		
-	   		desiredMove();
+		//selecting centre
+		else if(board[5]==' ') {
+			board[5]=choiceC;
 		}
+		//selecting sided
+		else if(board[2]==' ') {
+			board[2]=choiceC;
+		}
+		else if(board[4]==' ') {
+			board[4]=choiceC;
+		}
+		else if(board[6]==' ') {
+			board[6]=choiceC;
+		}
+		else if(board[8]==' ') {
+			board[8]=choiceC;
+		}
+		
 		showBoard();
 		;
 	}
@@ -344,7 +358,6 @@ public class TicTacToeGame {
 			else {
 				
 				computerTry(); 
-				
 				checkWinner();
 				turn='p';
 			}
