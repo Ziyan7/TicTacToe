@@ -363,7 +363,7 @@ public class TicTacToeGame {
 		TicTacToeBoard(); //initializing the Board
 		toss();
 		inputChar();
-
+		//to play the game
 		while(winner!="yes" || winner!="draw")
 		 {
 			if(turn=='p') {
@@ -372,13 +372,13 @@ public class TicTacToeGame {
 				desiredLocation(); 
 				desiredMove(); 
 				checkWinner();
-				turn='c';
+				turn='c'; //change the turn
 			}
 			else {
 				
 				computerTry(); 
 				checkWinner();
-				turn='p';
+				turn='p';  //change the turn
 			}
 		}
 		playAgain();
